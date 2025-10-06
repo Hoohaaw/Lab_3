@@ -1,0 +1,25 @@
+  {
+  "name": "l3-password-validator-application",
+  "version": "1.0.0",
+  "description": "A password validation library",
+  "main": "/src/app.js",
+  "author": "Alex Palm",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hoohaaw/Lab_2.git"
+  },
+ 
+  "devDependencies": {
+    "eslint": "^9.35.0",
+    "jest": "^30.1.3"
+  },
+  "dependencies": {
+  },
+  "scripts": {
+  "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
+  "start": "node password-validator/src/test.js",
+  "coverage": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage"
+  },
+  "type": "module"
+  }

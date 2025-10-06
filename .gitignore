@@ -1,0 +1,11 @@
+# Personal notes
+Notes.md
+
+# Personal test file, not do be tracked
+test.js
+
+# Dependency directories
+node_modules/
+
+# Password validator config file for testing
+password-validator.config.js
