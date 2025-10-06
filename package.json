@@ -1,13 +1,13 @@
   {
   "name": "l3-password-validator-application",
   "version": "1.0.0",
-  "description": "A password validation library",
+  "description": "A feed application using password validation library",
   "main": "/src/app.js",
   "author": "Alex Palm",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hoohaaw/Lab_2.git"
+    "url": "git+https://github.com/Hoohaaw/Lab_3.git"
   },
  
   "devDependencies": {
