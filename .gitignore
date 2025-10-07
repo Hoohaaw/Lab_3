@@ -9,3 +9,6 @@ node_modules/
 
 # Password validator config file for testing
 password-validator.config.js
+
+# Environment variables
+.env
