@@ -1,5 +1,8 @@
+import validator from "password-validator-ap";
+
 class UserCredentials {
   constructor(username, password) {
+    this.validator = new validator();
     this.username = username;
     this.password = password;
   }
@@ -17,6 +20,10 @@ class UserCredentials {
 
   saveCredentialsToDatabase(username, password) {
     // Save username and password to database
+  }
+
+  validatePassword(password, username) {
+    this.validator.validate(password, username);
   }
 }
 
