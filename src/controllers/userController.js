@@ -18,6 +18,5 @@ class UserController {
     res.send("Delete user");
   }
 
-  
 }
 export const userController = new UserController();
