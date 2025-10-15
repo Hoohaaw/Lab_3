@@ -21,8 +21,9 @@ Formatting is also an incredible way to help with readability. A whiteline where
 I have to admit that data structures as how they were explained during a seminar was confusing to me. I could not follow the concept between exposing the implementation and not. However the book gave an explaination that gave more clarity. The example was a fuel tank of a car, the measurement is how much actual fuel is in the car. However the way you show this information to the user should go through a layer of abstraction to make the data more digestible. Instead of showing how many gallons are left in the tank you should show the amount in percentages. A clearly better choice. And im guessing this concept is exactly what this course is trying to enforce. As with the L-2 assignment when we created our own libraries. My library has probably around 20 functions. However I just need the user to know about 1-2 of them. Abstraction is key!
 
 And this thinking are great for both the user and the creator. Again, as our own developed libraries. I dont want my users to actually have the option to access all functions. I can assure that my library is being used in the way it should if a layer of abstraction is provided.
-## Chapter 7: Error Handling
 
+## Chapter 7: Error Handling
+When creating the automatic test cases for the L-2 library assignment I stumbled upon a coding error that I made. I created most of my code to be returning true or false dependant on if a string contained what specific regex that function was testing. Which effectively made that my error handling was a false return statement. Which I now know is not enough off feedback from the code. Errors should be explaining what went wrong. In some way the return of the false statement did that, however there could be multiple reasons for that and the developer would never know what specifically caused it. The book states in the conclustion of chapter 7 that robust code shoud not see error handling as a seperate concern. Which I very clearly previously. My focus was on just making the code work not actually writing good code. Which is a difference. 
 
 ## Chapter 8: Boundries
 ## Chapter 9: Unit Tests
