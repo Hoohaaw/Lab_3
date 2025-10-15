@@ -32,5 +32,11 @@ I like to write automatic tests. I like to see how my code fullfills the require
 What I want to get to is that during that time I did not see a test being written, I did not hear about tests, and no one talk this serious way about it that the book does. 
 
 My conclusion; Im excited to see which is right. As I stated in the beginning of this reflection for this chapter. I like to write tests and fullfill them. Therefore Im going to continue doing that In the way I see fit. And for what I know, that way might expand more into what the book suggests. 
+
 ## Chapter 10: Classes
+I have a hard time with object oriented programming. I get the concept and how everything should fit together, but I cant escape feeling of being "locked" in some capacity. Therefore I prefer function based coding like with JS way more. However the way that the author of the book is describing the class structures and their Cohesion it sounds like the superior way. Especially when (again) the author screams about the length of functions and classes. I think I have been over complicating the OOP approach. I kind off see classes in Java like this huge beast that does an incredibly large amount of operations. However when reading the in the book it has become clearer to me that OOP contains the same principles as the functional coding. Just that they are seperated into classes. 
+
+This whole explaination might seem redundant, which it might be honestly. But I truly have struggled with OOP and that way of thinking. There was a term coined not so long ago called "Vibe coding." Which if I understand it correctly is just coding without any structural limitation. And that is the way I do most of my coding. Just free flowing and going with it. Which leads me to clean it up at a later time. However coding for OOP is a bit trickier in that sense. You need to have a plan of how things are supposed to work together. 
+
+I'll keep on working to excercise that way of thinking. And honestly this chapter is kind off easing my mind about this a little bit. 
 ## Chapter 11: Systems
