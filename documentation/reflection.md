@@ -27,5 +27,10 @@ When creating the automatic test cases for the L-2 library assignment I stumbled
 
 ## Chapter 8: Boundries
 ## Chapter 9: Unit Tests
+I like to write automatic tests. I like to see how my code fullfills the requirements put on i. And I like to have my ass covered with tests. However the book states that test code should be kept as clean as production code. And that test code requiers thought, design and care. Which I tend to agree too. However I might not agree to the extent that the book is stating. Reading the first few pages of chapter nine in the book the impression I get is that EVERYTHING is dependant on the tests and if your tests are not well thought out your project is kind off doomed to fail. And this might be my ignorance as a second year web development student but this is really not my experience. Again, I have not worked as a web developer. However I have worked as a UX designer for a media company for about two years. And with that role you get close to the developers and their ways of working. Actually a big part of my work was to make sure that the design team and developers had clear communication about the products to build. 
+
+What I want to get to is that during that time I did not see a test being written, I did not hear about tests, and no one talk this serious way about it that the book does. 
+
+My conclusion; Im excited to see which is right. As I stated in the beginning of this reflection for this chapter. I like to write tests and fullfill them. Therefore Im going to continue doing that In the way I see fit. And for what I know, that way might expand more into what the book suggests. 
 ## Chapter 10: Classes
 ## Chapter 11: Systems
