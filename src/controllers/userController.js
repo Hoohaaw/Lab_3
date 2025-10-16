@@ -1,5 +1,5 @@
-import passwordValidator from "password-validator-ap";
-import User from "../../public/models/userModel";
+import passwordValidator from "password-validator-ap/password-validator/src/app.js";
+import User from "../../public/models/userModel.js";
 
 const validator = new passwordValidator();
 

@@ -1,14 +1,19 @@
+import { Post } from "../models/Post.js";
 class FeedController {
-  createPost(req, res) {
+  createPost(req, res) { // Create a new post
     res.send("Create post");
+    const { username, content } = req.body;
+    Post.create({ username, content });
   }
-  getPosts(req, res) {
+  async getPosts(req, res,) { // Get all posts
     res.send("Get posts");
-  }
-  deletePost(req, res) {
-    res.send("Delete post");
-  }
+    const posts = await Post.find();
 
+  }
+  deletePost(req, res, next, id) { // delete a post
+    res.send("Delete post");
+    Post.findByIdAndDelete(id);
+  }
 }
 
 export const feedController = new FeedController();
