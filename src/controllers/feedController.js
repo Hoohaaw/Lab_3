@@ -1,9 +1,13 @@
 import { Post } from "../models/Post.js";
 class FeedController {
-  createPost(req, res) { // Create a new post
-    res.send("Create post");
+  async createPost(req, res) { // Create a new post
     const { username, content } = req.body;
-    Post.create({ username, content });
+    if (content && content.trim().length > 1) {
+      await Post.create({ username, content });
+      res.send("Create post");
+    } else {
+      res.status(400).send("Cant post an empty post");
+    }
   }
   async getPosts(req, res,) { // Get all posts
     res.send("Get posts");
