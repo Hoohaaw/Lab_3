@@ -8,7 +8,6 @@ class UserController {
     res.send("Login user");
     const { username, password } = req.body;
     validator.validate(password, username);
-
   }
   async registerUser(req, res) {
     res.send("Register user");
