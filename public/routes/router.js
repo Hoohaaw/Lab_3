@@ -4,7 +4,7 @@ import { userController } from "../../src/controllers/userController.js";
 export const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
+  res.render("feed", { title: "Feed" });
 });
 
 router.get("/login", (req, res) => {
