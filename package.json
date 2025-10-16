@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
     "mongoose": "^8.19.1",
     "password-validator-ap": "^1.1.0"
@@ -23,7 +24,6 @@
     "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
     "start": "node -r dotenv/config src/app.js",
     "coverage": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage"
-    
   },
   "type": "module"
 }
