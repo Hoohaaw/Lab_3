@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/userCredentials.css">
+  <script src="/js/login.js" defer></script>
+</head>
+<body>
+  <form-container>
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+      <div class="username-class">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="password-class">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="linkToRegister">Don't have an account? <a href="/register">Register here</a></div>
+  </form-container>
+</body>
+</html>
