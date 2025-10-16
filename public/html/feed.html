@@ -1,14 +1,35 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Feed</title>
-    <script src="../js/feed.js" defer></script>
-    <link rel="stylesheet" href="../css/feed.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feed</title>
+  <script src="../js/feed.js" defer></script>
+  <link rel="stylesheet" href="../css/feed.css">
 </head>
 <body>
+  <main id="feedContainer">
+    <section id="newPostContainer">
+      <textarea id="newPostContent" placeholder="What's on your mind?" maxlength="280"></textarea>
+      <button id="postButton">Post</button>
+    </section>
 
+    <section id="postsContainer">
+      <article class="postContainer">
+        <header class="usernameBar">
+          <span class="postUsername">Emil Andersson</span>
+          <span class="postTimestamp">12:34</span>
+        </header>
+        <p class="postContent">
+          Here is some text:
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad harum quaerat voluptatem laborum possimus, autem cumque, odio quis sequi illo doloribus similique? Ad, et pariatur. Facilis quisquam molestiae minus nulla.
+        </p>
+        <footer class="postLikes">
+          <button class="likeButton">Like</button>
+          <span class="likeCount">1337</span>
+        </footer>
+      </article>
+    </section>
+  </main>
 </body>
 </html>
