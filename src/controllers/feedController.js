@@ -15,7 +15,7 @@ class FeedController {
 
       const posts = await Post.find({
         createdAt: { $gte: fortyEightHoursAgo }
-      }).sort({ createdAt: -1 }); // newest first
+      }).sort({ createdAt: -1 });
 
       res.status(200).json(posts);
     } catch (error) {
