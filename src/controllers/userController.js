@@ -46,7 +46,6 @@ class UserController {
     } catch {
       res.status(400).send("Could not register user");
     }
-
   }
 
   async deleteUser(req, res) {
