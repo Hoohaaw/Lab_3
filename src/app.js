@@ -5,6 +5,9 @@ import { connectToDatabase } from "../public/config/mongoose.js";
 import { router } from "../public/routes/router.js";
 
 try {
+  const mongooseInstance = await connectToDatabase(process.env.DB_CONNECTION_STRING);
+  console.log("Mongoose readyState:", mongooseInstance.connection.readyState);
+
   const app = express();
 
   // Serve static files
