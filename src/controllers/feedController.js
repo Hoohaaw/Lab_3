@@ -2,13 +2,19 @@ import Post from "../../public/models/postModel.js";
 class FeedController {
   async createPost(req, res) { // Create a new post
     const { username, content } = req.body;
-    if (content && content.trim().length > 1) {
-      await Post.create({ username, content });
-      res.send("Create post");
-    } else {
-      res.status(400).send("Cant post an empty post");
+    try {
+      if (!content || !content.trim()) {
+        return res.status(400).json({ error: "Post cannot be empty" });
+      }
+
+      const newPost = await Post.create({ username, content });
+      return res.status(201).json(newPost);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to create post" });
     }
   }
+
   async getPosts(req, res) {
     try {
       const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);

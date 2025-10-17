@@ -3,6 +3,8 @@ import express from "express";
 import { fileURLToPath } from "url";
 import { connectToDatabase } from "../public/config/mongoose.js";
 import { router } from "../public/routes/router.js";
+import feedRoutes from "../public/routes/feedRoutes.js";
+import userRoutes from "../public/routes/userRoutes.js";
 
 try {
   await connectToDatabase(process.env.DB_CONNECTION_STRING);
@@ -21,6 +23,9 @@ try {
   app.set("views", viewsDir);
 
   app.use("/", router);
+  app.use("/login", userRoutes);
+  app.use("/register", userRoutes);
+  app.use("/feed", feedRoutes);
 
   const port = process.env.PORT || 3000;
   app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
