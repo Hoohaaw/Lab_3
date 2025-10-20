@@ -34,6 +34,26 @@ class FeedController {
     res.send("Delete post");
     Post.findByIdAndDelete(id);
   }
+
+  async updateLikeCount(req, res) { // Update like count
+    try {
+      const { id } = req.body.id;
+
+      const updatedPost = await Post.findByIdAndUpdate(id,
+        { $inc: { likes: 1 } },
+      );
+
+      if (!updatedPost) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+
+      res.json({ message: "Like count updated", post: updatedPost });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+    }
+  }
+
 }
 
 export const feedController = new FeedController();
