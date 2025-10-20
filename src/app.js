@@ -5,6 +5,7 @@ import { connectToDatabase } from "../public/config/mongoose.js";
 import { router } from "../public/routes/router.js";
 import feedRoutes from "../public/routes/feedRoutes.js";
 import userRoutes from "../public/routes/userRoutes.js";
+import cookieParser from "cookie-parser";
 
 try {
   await connectToDatabase(process.env.DB_CONNECTION_STRING);
@@ -16,6 +17,9 @@ try {
   app.use(express.static(publicDir));
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+
+  // Cookie parser middleware
+  app.use(cookieParser());
 
   // View engine setup (EJS)
   app.set("view engine", "ejs");
