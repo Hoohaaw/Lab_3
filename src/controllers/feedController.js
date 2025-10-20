@@ -26,8 +26,8 @@ class FeedController {
     if (!token) {return null;}
     try {
       return jwt.verify(token, this.JWT_SECRET);
-    } catch (err) {
-      return null;
+    } catch (error) {
+      return null, error;
     }
   }
 

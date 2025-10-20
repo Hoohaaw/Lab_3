@@ -14,3 +14,5 @@ A logged in user should be able to create posts which other users can see and re
 ## Deleting posts
 A logged in user should be able to delete a post they have created. It should not be possible for a user to delete another users posts.
 
+## Verification
+The user, when a sucessfull login occured, should get a cookie set for validation. Which then is used to verify the user and enables them to write posts and like them.
