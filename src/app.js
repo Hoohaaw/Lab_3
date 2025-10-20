@@ -27,8 +27,7 @@ try {
   app.set("views", viewsDir);
 
   app.use("/", router);
-  app.use("/login", userRoutes);
-  app.use("/register", userRoutes);
+  app.use("/", userRoutes);
   app.use("/feed", feedRoutes);
 
   const port = process.env.PORT || 3000;
