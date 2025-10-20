@@ -20,9 +20,8 @@ class UserController {
         res.cookie("username", username, { httpOnly: true, sameSite: "lax" });
         const token = jwt.sign({ userId: user._id }, this.JWT_SECRET, { expiresIn: "2d" });
 
-        // Send it as an HTTP-only cookie
         res.cookie("authToken", token, {
-          httpOnly: true, // safer: not accessible from JS
+          httpOnly: true,
           secure: process.env.NODE_ENV === "production",
           maxAge: 2 * 24 * 60 * 60 * 1000
         });
