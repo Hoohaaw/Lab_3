@@ -14,22 +14,21 @@
       <button id="postButton">Post</button>
     </section>
 
-    <section id="postsContainer">
-      <article class="postContainer">
-        <header class="usernameBar">
-          <span class="postUsername">Emil Andersson</span>
-          <span class="postTimestamp">12:34</span>
-        </header>
-        <p class="postContent">
-          Here is some text:
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad harum quaerat voluptatem laborum possimus, autem cumque, odio quis sequi illo doloribus similique? Ad, et pariatur. Facilis quisquam molestiae minus nulla.
-        </p>
-        <footer class="postLikes">
-          <button class="likeButton">Like</button>
-          <span class="likeCount">1337</span>
-        </footer>
-      </article>
-    </section>
+<!-- Template for posts -->
+<section id="postsContainer">
+  <article class="postContainer" id="postTemplate" style="display: none;">
+    <header class="usernameBar">
+      <span class="postUsername">USERNAME</span>
+      <span class="postTimestamp">TIMESTAMP</span>
+    </header>
+    <p class="postContent">CONTENT</p>
+    <footer class="postLikes">
+      <button class="likeButton">Like</button>
+      <span class="likeCount">0</span>
+    </footer>
+  </article>
+</section>
+
   </main>
 </body>
 </html>
