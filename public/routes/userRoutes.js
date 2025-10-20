@@ -23,4 +23,10 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.get("/logout", (req, res) => {
+  // Clear the username cookie
+  res.clearCookie("username");
+  res.redirect("/login");
+});
+
 export default router;
