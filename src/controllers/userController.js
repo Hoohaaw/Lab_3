@@ -1,9 +1,13 @@
 import passwordValidator from "password-validator-ap/password-validator/src/app.js";
 import User from "../../public/models/userModel.js";
+import jwt from "jsonwebtoken";
 
 const validator = new passwordValidator();
 
 class UserController {
+  constructor   () {
+    this.JWT_SECRET = process.env.JWT_SECRET;
+  }
   async loginUser(req, res) {
     try {
       const { username, password } = req.body;
@@ -13,7 +17,17 @@ class UserController {
 
       if (user) {
         console.log("Login successful for user:", username); // testing
-        res.status(200).send("Login successful");
+        res.cookie("username", username, { httpOnly: true, sameSite: "lax" });
+        const token = jwt.sign({ userId: user._id }, this.JWT_SECRET, { expiresIn: "2d" });
+
+        // Send it as an HTTP-only cookie
+        res.cookie("authToken", token, {
+          httpOnly: true, // safer: not accessible from JS
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 2 * 24 * 60 * 60 * 1000
+        });
+
+        return res.redirect("/");
       } else {
         console.log("Login failed for user:", username); // testing
         res.status(401).send("Invalid username or password");
