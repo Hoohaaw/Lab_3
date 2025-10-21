@@ -13,5 +13,6 @@ password-validator.config.js
 # Environment variables
 .env
 
-# Logs
+# Claude 
 CLAUDE.md
+.claude

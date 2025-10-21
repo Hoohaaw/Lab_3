@@ -10,7 +10,7 @@
 <body>
   <form-container>
     <h1>Register</h1>
-    <form action="/register" method="POST">
+    <form action="/register" method="POST" id="registerForm">
       <div class="username-class">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -19,9 +19,64 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
       </div>
-      <button type="submit">Register</button>
+
+      <div id="validationFeedback" class="validation-container">
+        <h3>Password Requirements:</h3>
+        <ul id="validationList">
+          <li data-validation="validateString" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Must be a valid string</span>
+          </li>
+          <li data-validation="validateLength" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Length between 4-120 characters</span>
+          </li>
+          <li data-validation="containsUppercase" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Contains uppercase letter</span>
+          </li>
+          <li data-validation="containsLowercase" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Contains lowercase letter</span>
+          </li>
+          <li data-validation="containsDigit" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Contains at least one number</span>
+          </li>
+          <li data-validation="containsSpecialChar" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Contains special character (!@#$%^&*)</span>
+          </li>
+          <li data-validation="doesNotContainWhitespace" class="pending">
+            <span class="icon">○</span>
+            <span class="text">No whitespace allowed</span>
+          </li>
+          <li data-validation="containsSameCharacter" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Not all same character</span>
+          </li>
+          <li data-validation="passwordEqualToUsername" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Password cannot equal username</span>
+          </li>
+          <li data-validation="passwordIsBlacklisted" class="pending">
+            <span class="icon">○</span>
+            <span class="text">Not a common/blacklisted password</span>
+          </li>
+          <li data-validation="passwordContainsSequenceLetters" class="pending">
+            <span class="icon">○</span>
+            <span class="text">No sequential patterns (abc, 123, qwerty)</span>
+          </li>
+        </ul>
+        <div id="validationProgress">
+          <span id="validCount">0</span> / <span id="totalCount">11</span> requirements met
+        </div>
+      </div>
+
+      <button type="submit" id="submitBtn" disabled>Register</button>
     </form>
     <div id="linkToLogin">Already have an account? <a href="/login">Login here</a></div>
+    <div id="errorMessage" class="error-message"></div>
   </form-container>
 </body>
 </html>

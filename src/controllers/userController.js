@@ -43,26 +43,51 @@ class UserController {
       const { username, password } = req.body;
       console.log("register attempt: ", username); // testing
 
-      const isValid = validator.validate(password, username);
-      console.log("Password validation result:", isValid); // testing
+      validator.validate(password, username);
+      const validations = validator.validations;
+      console.log("Password validation results:", validations); // testing
+
+      // Check if all validations passed
+      const allValid = validations.every(v => v.result === true);
+
+      if (!allValid) {
+        return res.status(400).json({
+          error: "Password does not meet requirements",
+          validations: validations
+        });
+      }
 
       const existingUser = await User.findOne({ username });
       if (existingUser) {
         console.log("Registration failed: username already taken"); // testing
-        return res.status(400).send("Username already exists");
+        return res.status(400).json({ error: "Username already exists" });
       }
 
       const newUser = await User.create({ username, password});
       console.log("New user created:", newUser); // testing
       await newUser.save();
-      res.status(201).send("User registered successfully");
-    } catch {
-      res.status(400).send("Could not register user");
+      res.status(201).json({ message: "User registered successfully" });
+    } catch (error) {
+      console.error("Registration error:", error);
+      res.status(400).json({ error: "Could not register user" });
     }
   }
 
   async deleteUser(req, res) {
     res.send("Delete user");
+  }
+
+  validatePasswordOnly(req, res) {
+    try {
+      const { password, username } = req.body;
+      validator.validate(password, username || "");
+      const validations = validator.validations;
+
+      res.status(200).json({ validations });
+    } catch (error) {
+      console.error("Validation error:", error);
+      res.status(500).json({ error: "Validation failed" });
+    }
   }
 
 }

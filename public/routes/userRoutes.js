@@ -24,6 +24,10 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/validate-password", (req, res) => {
+  userController.validatePasswordOnly(req, res);
+});
+
 router.get("/logout", (req, res) => {
   // Clear both cookies to fully log out
   res.clearCookie("username");
