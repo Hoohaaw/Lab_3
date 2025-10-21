@@ -24,8 +24,9 @@ router.post("/register", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  // Clear the username cookie
+  // Clear both cookies to fully log out
   res.clearCookie("username");
+  res.clearCookie("authToken");
   res.redirect("/login");
 });
 

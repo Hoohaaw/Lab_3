@@ -3,6 +3,26 @@ class Feed {
     this.feedContainer = document.getElementById("feedContainer");
     this.postsContainer = document.getElementById("postsContainer");
     this.template = document.getElementById("postTemplate");
+    this.loadUsername();
+  }
+
+  // Load username from cookie and display in header
+  loadUsername() {
+    const username = this.getCookie("username");
+    const headerUsername = document.getElementById("headerUsername");
+    if (headerUsername && username) {
+      headerUsername.textContent = `Welcome, ${username}`;
+    }
+  }
+
+  // Get cookie by name
+  getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop().split(";").shift();
+    }
+    return null;
   }
 
   // Trigger for creating a new post
