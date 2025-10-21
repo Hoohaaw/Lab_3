@@ -32,6 +32,7 @@ class FeedController {
   }
 
   async createPost(req, res, userId, content, user) { // create a post
+    console.log("Creating post with:", { userId, user });
     try {
       const newPost = await Post.create({
         author: userId,
