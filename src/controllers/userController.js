@@ -11,12 +11,9 @@ class UserController {
   async loginUser(req, res) {
     try {
       const { username, password } = req.body;
-      console.log("Login attempt", username); // testing
-
       const user = await User.findOne({ username, password });
 
       if (user) {
-        console.log("Login successful for user:", username); // testing
         res.cookie("username", username, { httpOnly: false, sameSite: "lax" });
         const token = jwt.sign({ userId: user._id }, this.JWT_SECRET, { expiresIn: "2d" });
 
@@ -28,7 +25,6 @@ class UserController {
 
         return res.redirect("/");
       } else {
-        console.log("Login failed for user:", username); // testing
         res.status(401).send("Invalid username or password");
       }
     } catch (error) {
@@ -41,13 +37,10 @@ class UserController {
   async registerUser(req, res) {
     try {
       const { username, password } = req.body;
-      console.log("register attempt: ", username); // testing
 
       validator.validate(password, username);
       const validations = validator.validations;
-      console.log("Password validation results:", validations); // testing
 
-      // Check if all validations passed
       const allValid = validations.every(v => v.result === true);
 
       if (!allValid) {
@@ -59,12 +52,10 @@ class UserController {
 
       const existingUser = await User.findOne({ username });
       if (existingUser) {
-        console.log("Registration failed: username already taken"); // testing
         return res.status(400).json({ error: "Username already exists" });
       }
 
       const newUser = await User.create({ username, password});
-      console.log("New user created:", newUser); // testing
       await newUser.save();
       res.status(201).json({ message: "User registered successfully" });
     } catch (error) {

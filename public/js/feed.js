@@ -6,7 +6,6 @@ class Feed {
     this.loadUsername();
   }
 
-  // Load username from cookie and display in header
   loadUsername() {
     const username = this.getCookie("username");
     const headerUsername = document.getElementById("headerUsername");
@@ -15,7 +14,6 @@ class Feed {
     }
   }
 
-  // Get cookie by name
   getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -25,7 +23,6 @@ class Feed {
     return null;
   }
 
-  // Trigger for creating a new post
   postEventTrigger() {
     const postButton = document.getElementById("postButton");
     postButton.addEventListener("click", async (e) => {
@@ -40,7 +37,6 @@ class Feed {
     });
   }
 
-  // Check for empty post content
   checkEmptyContent(content) {
     if (!content) {
       alert("Post cannot be empty!");
@@ -50,7 +46,6 @@ class Feed {
     }
   }
 
-  // Create a new post
   async createPost(content) {
     try {
       const response = await fetch("/feed/create", {
@@ -71,7 +66,6 @@ class Feed {
     }
   }
 
-  // Load posts from database
   async loadPosts() {
     try {
       const response = await fetch("/feed/posts");
@@ -84,13 +78,11 @@ class Feed {
     }
   }
 
-  // Render posts from database
   renderPosts(posts) {
     this.postsContainer.innerHTML = "";
     posts.forEach(post => this.prependPost(post, false));
   }
 
-  // Prepend a post to the feed
   prependPost(post, toTop = true) {
     const postDiv = this.template.cloneNode(true);
     postDiv.id = "";
@@ -113,7 +105,6 @@ class Feed {
     }
   }
 
-  // Like a post
   async likePost(postId, button) {
     try {
       const response = await fetch("/feed/like", {
@@ -136,7 +127,6 @@ class Feed {
   }
 }
 
-// Initializing feed
 const feed = new Feed();
 window.addEventListener("DOMContentLoaded", () => {
   feed.postEventTrigger();

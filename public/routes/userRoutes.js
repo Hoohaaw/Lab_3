@@ -29,7 +29,6 @@ router.post("/validate-password", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  // Clear both cookies to fully log out
   res.clearCookie("username");
   res.clearCookie("authToken");
   res.redirect("/login");

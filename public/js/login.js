@@ -14,14 +14,6 @@ class UserCredentials {
     });
   }
 
-  checkCredentialsInDatabase(username) {
-    // Check username is unique in database
-  }
-
-  saveCredentialsToDatabase(username, password) {
-    // Save username and password to database
-  }
-
   validatePassword(password, username) {
     this.validator.validate(password, username);
   }

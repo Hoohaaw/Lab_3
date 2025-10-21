@@ -7,7 +7,6 @@ validator.setMaxLength(120);
 function validatePassword(req, res, next, password, username) {
   try {
     validator.validate(password, username);
-    console.log(validator.validate(password, username)); // testing
     next();
   } catch (error) {
     console.error("Password validation failed:", error);

@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
-
-// Cache connection for serverless environments (Vercel)
 let cachedConnection = null;
 
 export const connectToDatabase = async (connectionString) => {
-  // Return cached connection if exists
   if (cachedConnection && mongoose.connection.readyState === 1) {
     return cachedConnection;
   }

@@ -12,11 +12,9 @@ class PasswordValidator {
   }
 
   setupEventListeners() {
-    // Validate as user types
     this.passwordInput.addEventListener("input", () => this.validatePassword());
     this.usernameInput.addEventListener("input", () => this.validatePassword());
 
-    // Handle form submission
     this.form.addEventListener("submit", (e) => this.handleSubmit(e));
   }
 
@@ -54,10 +52,8 @@ class PasswordValidator {
       const listItem = this.validationList.querySelector(`[data-validation="${validation.name}"]`);
 
       if (listItem) {
-        // Remove all classes
         listItem.classList.remove("valid", "invalid", "pending");
 
-        // Add appropriate class
         if (validation.result === true) {
           listItem.classList.add("valid");
           validCount++;
@@ -67,10 +63,8 @@ class PasswordValidator {
       }
     });
 
-    // Update count
     this.validCount.textContent = validCount;
 
-    // Enable/disable submit button
     const allValid = validCount === validations.length;
     this.submitBtn.disabled = !allValid;
   }
@@ -105,7 +99,6 @@ class PasswordValidator {
       const result = await response.json();
 
       if (response.ok) {
-        // Registration successful
         this.errorMessage.style.color = "#4CAF50";
         this.errorMessage.textContent = result.message || "Registration successful! Redirecting to login...";
 
@@ -113,11 +106,9 @@ class PasswordValidator {
           window.location.href = "/login";
         }, 1500);
       } else {
-        // Registration failed
         this.errorMessage.style.color = "#f44336";
         this.errorMessage.textContent = result.error || "Registration failed";
 
-        // If validation errors, update UI
         if (result.validations) {
           this.updateValidationUI(result.validations);
         }
@@ -130,7 +121,6 @@ class PasswordValidator {
   }
 }
 
-// Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   new PasswordValidator();
 });
