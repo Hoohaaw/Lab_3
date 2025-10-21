@@ -11,7 +11,7 @@ class Feed {
     const username = this.getCookie("username");
     const headerUsername = document.getElementById("headerUsername");
     if (headerUsername && username) {
-      headerUsername.textContent = `Welcome, ${username}`;
+      headerUsername.textContent = `Logged in as, ${username}`;
     }
   }
 

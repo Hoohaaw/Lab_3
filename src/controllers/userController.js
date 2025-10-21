@@ -17,7 +17,7 @@ class UserController {
 
       if (user) {
         console.log("Login successful for user:", username); // testing
-        res.cookie("username", username, { httpOnly: true, sameSite: "lax" });
+        res.cookie("username", username, { httpOnly: false, sameSite: "lax" });
         const token = jwt.sign({ userId: user._id }, this.JWT_SECRET, { expiresIn: "2d" });
 
         res.cookie("authToken", token, {
