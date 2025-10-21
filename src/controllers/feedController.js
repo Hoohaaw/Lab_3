@@ -18,7 +18,7 @@ class FeedController {
       return res.status(400).json({ error: "Post cannot be empty" });
     }
 
-    return this.createPost(req, res, null, userId, content, user);
+    return this.createPost(req, res, userId, content, user);
   }
 
   checkIfTokenIsPresent(req) { // verify JWT token
