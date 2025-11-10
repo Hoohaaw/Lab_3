@@ -24,7 +24,7 @@
     "password-validator-ap": "^1.1.0"
   },
   "scripts": {
-    "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && jest --detectOpenHandles",
     "start": "node -r dotenv/config src/app.js",
     "coverage": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage"
   },
