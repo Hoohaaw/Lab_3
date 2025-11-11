@@ -40,6 +40,20 @@ postSchema.statics.getPostsFromLast48Hours = async function () {
   }
 };
 
+postSchema.statics.createPost = async function (userId, user, content) {
+  try {
+    const newPost = await this.create({
+      author: userId,
+      username: user.username,
+      content
+    });
+    return newPost;
+  } catch (err) {
+    console.error("Error creating post:", err);
+    throw err;
+  }
+};
+
 const Post = mongoose.model("Post", postSchema);
 
 export default Post;

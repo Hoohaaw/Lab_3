@@ -30,31 +30,10 @@ class FeedController {
   }
 
   async createPost(req, res, userId, content, user) { // create a post
-    console.log("Creating post with:", { userId, user });
-    try {
-      const newPost = await Post.create({
-        author: userId,
-        username: user.username,
-        content
-      });
-      return res.status(201).json(newPost);
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ error: "Failed to create post" });
-    }
+    console.log("Creating post with:", { userId, user, content });
+    await Post.createPost(userId, user, content)
+      .then(post => res.status(201).json(post));
   }
-
-  // async getPosts(req, res) { // Get posts from last 48 hours
-  //   try {
-  //     const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
-  //     const posts = await Post.find({
-  //       createdAt: { $gte: fortyEightHoursAgo }}).sort({ createdAt: -1 }).lean();
-  //     res.status(200).json(posts);
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).send("Error fetching posts");
-  //   }
-  // }
 
   async getPosts(req, res) { // Get posts from last 48 hours
     await Post.getPostsFromLast48Hours()
