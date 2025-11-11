@@ -1,3 +1,4 @@
+import { get } from "mongoose";
 import Post from "../../public/models/postModel.js";
 import User from "../../public/models/userModel.js";
 import jwt from "jsonwebtoken";
@@ -43,21 +44,26 @@ class FeedController {
     }
   }
 
+  // async getPosts(req, res) { // Get posts from last 48 hours
+  //   try {
+  //     const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
+  //     const posts = await Post.find({
+  //       createdAt: { $gte: fortyEightHoursAgo }}).sort({ createdAt: -1 }).lean();
+  //     res.status(200).json(posts);
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).send("Error fetching posts");
+  //   }
+  // }
+
   async getPosts(req, res) { // Get posts from last 48 hours
-    try {
-      const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
-      const posts = await Post.find({
-        createdAt: { $gte: fortyEightHoursAgo }}).sort({ createdAt: -1 }).lean();
-      res.status(200).json(posts);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Error fetching posts");
-    }
+    await Post.getPostsFromLast48Hours()
+      .then(posts => res.status(200).json(posts));
   }
 
-  deletePost(req, res, next, id) { // delete a post
+  async deletePost(req, res, next, id) { // delete a post
     res.send("Delete post");
-    Post.findByIdAndDelete(id);
+    await Post.findByIdAndDelete(id);
   }
 
   async updateLikeCount(req, res) { // Update like count

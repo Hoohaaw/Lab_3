@@ -29,6 +29,17 @@ postSchema.statics.likePost = async function (postId) {
   }
 };
 
+postSchema.statics.getPostsFromLast48Hours = async function () {
+  try {
+    const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
+    return this.find({ createdAt: { $gte: fortyEightHoursAgo } }).sort({ createdAt: -1 }).lean();
+
+  } catch (error) {
+    console.error("Error fetching posts from last 48 hours:", error);
+    throw error;
+  }
+};
+
 const Post = mongoose.model("Post", postSchema);
 
 export default Post;
