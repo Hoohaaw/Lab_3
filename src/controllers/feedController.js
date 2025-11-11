@@ -2,9 +2,6 @@ import Post from "../../public/models/postModel.js";
 import User from "../../public/models/userModel.js";
 import jwt from "jsonwebtoken";
 class FeedController {
-  constructor() {
-    this.JWT_SECRET = process.env.JWT_SECRET;
-  }
   async handleCreatePost(req, res) { // create a post
     const decoded = this.checkIfTokenIsPresent(req);
     if (!decoded) {return res.status(401).json({ error: "Unauthorized" });}
@@ -25,9 +22,9 @@ class FeedController {
     const token = req.cookies.authToken;
     if (!token) {return null;}
     try {
-      return jwt.verify(token, this.JWT_SECRET);
+      return jwt.verify(token, process.env.JWT_SECRET);
     } catch (error) {
-      return null, error;
+      return null;
     }
   }
 
@@ -64,17 +61,9 @@ class FeedController {
   }
 
   async updateLikeCount(req, res) { // Update like count
-    try {
-      const { id } = req.body;
-      const updatedPost = await Post.findByIdAndUpdate(id,{ $inc: { likes: 1 } },{ new: true });
-      if (!updatedPost) {
-        return res.status(404).json({ message: "Post not found" });
-      }
-      res.json({ message: "Like count updated", post: updatedPost });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Server error" });
-    }
+    const { id } = req.body;
+    const updatedPost = await Post.likePost(id);
+    res.json({ message: "Like count updated", post: updatedPost });
   }
 }
 

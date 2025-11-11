@@ -66,6 +66,8 @@ class UserController {
 
   async deleteUser(req, res) {
     res.send("Delete user");
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
   }
 
   validatePasswordOnly(req, res) {
