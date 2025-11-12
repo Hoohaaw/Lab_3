@@ -19,9 +19,6 @@ postSchema.statics.likePost = async function (postId) {
       { new: true }
     );
 
-    if (!updatedPost) {
-      throw new Error("Post not found");
-    }
     return updatedPost;
   } catch (err) {
     console.error("Error updating like count:", err);
@@ -54,6 +51,13 @@ postSchema.statics.createPost = async function (userId, user, content) {
   }
 };
 
+postSchema.statics.checkJwtToken = function (token) {
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    return null;
+  }
+};
 const Post = mongoose.model("Post", postSchema);
 
 export default Post;

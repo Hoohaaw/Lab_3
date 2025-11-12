@@ -15,33 +15,33 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-test("Check if JWT token is present - no token", () => {
+test("Check if JWT token is present - no token", async () => {
   const req = { cookies: {} };
-  const decoded = feedController.checkIfTokenIsPresent(req);
+  const decoded = await feedController.checkIfTokenIsPresent(req);
   expect(decoded).toBeNull();
 });
 
-test("Check if JWT token is present - valid token", () => {
+test("Check if JWT token is present - valid token", async () => {
   const req = {
     cookies: {
       authToken: jwt.sign({ userId: "12345" }, process.env.JWT_SECRET)
     }
   };
-  const decoded = feedController.checkIfTokenIsPresent(req);
+  const decoded = await feedController.checkIfTokenIsPresent(req);
   expect(decoded).toHaveProperty("userId", "12345");
 });
 
-test("Check if JWT token is present - invalid token", () => {
+test("Check if JWT token is present - invalid token", async () => {
   const req = {
     cookies: {
       authToken: "invalid.token.here"
     }
   };
-  const decoded = feedController.checkIfTokenIsPresent(req);
+  const decoded = await feedController.checkIfTokenIsPresent(req);
   expect(decoded).toBeNull();
 });
 
-test("Check if JWT token is present - expired token", () => {
+test("Check if JWT token is present - expired token", async () => {
   const expiredToken = jwt.sign(
     { userId: "12345" },
     process.env.JWT_SECRET,
@@ -52,17 +52,17 @@ test("Check if JWT token is present - expired token", () => {
       authToken: expiredToken
     }
   };
-  const decoded = feedController.checkIfTokenIsPresent(req);
+  const decoded = await feedController.checkIfTokenIsPresent(req);
   expect(decoded).toBeNull();
 });
 
-test("Check if JWT token is present - token with wrong secret", () => {
+test("Check if JWT token is present - token with wrong secret", async () => {
   const req = {
     cookies: {
       authToken: jwt.sign({ userId: "12345" }, "wrong-secret")
     }
   };
-  const decoded = feedController.checkIfTokenIsPresent(req);
+  const decoded = await feedController.checkIfTokenIsPresent(req);
   expect(decoded).toBeNull();
 });
 
@@ -72,6 +72,3 @@ test("Get all posts from last 48 hours", async () => {
     createdAt: { $gte: fortyEightHoursAgo }}).sort({ createdAt: -1 }).lean();
   expect(posts).toBeDefined();
 });
-
-test("Create a new post", async () => {
-    const user 
