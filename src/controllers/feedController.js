@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 class FeedController {
   async handleCreatePost(req, res) { // create a post
     try {
-      const decoded = await this.checkIfTokenIsPresent(req);
+      const decoded = await this._checkIfTokenIsPresent(req);
       if (!decoded) {
         return res.status(401).json({ error: "Unauthorized" });
       }
@@ -20,19 +20,19 @@ class FeedController {
         return res.status(400).json({ error: "Post cannot be empty" });
       }
 
-      return this.createPost(req, res, userId, content, user);
+      return this._createPost(req, res, userId, content, user);
     } catch (err) {
       console.error("Error in handleCreatePost:", err);
       return res.status(500).json({ error: "Server error" });
     }
   }
 
-  async checkIfTokenIsPresent(req) { // verify JWT token
+  async _checkIfTokenIsPresent(req) { // verify JWT token
     const token = req.cookies.authToken;
     return await Post.checkJwtToken(token);
   }
 
-  async createPost(req, res, userId, content, user) { // create a post
+  async _createPost(req, res, userId, content, user) { // create a post
     console.log("Creating post with:", { userId, user, content });
     try {
       const newPost = await Post.createPost(userId, user, content);
